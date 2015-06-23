@@ -30,6 +30,13 @@ module.exports = function(config) {
             version: '9'
         },
 
+        sl_ie_8: {
+            base: 'SauceLabs',
+            browserName: 'internet explorer',
+            platform: 'Windows 7',
+            version: '8'
+        },
+
         sl_firefox_35: {
             base: 'SauceLabs',
             browserName: 'firefox',
@@ -38,16 +45,18 @@ module.exports = function(config) {
         }
     };
 
+    config.reporters.push('saucelabs');
+
     config.set({
-        reporters: ['saucelabs'],
 
         sauceLabs: {
             testName: 'react-mini-router client tests',
-            startConnect: false
         },
 
         customLaunchers: customLaunchers,
 
-        browsers: Object.keys(customLaunchers)
+        browsers: Object.keys(customLaunchers),
+
+        singleRun: true
     });
 };
